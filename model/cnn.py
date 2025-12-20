@@ -23,19 +23,19 @@ class CNNModel(nn.Module):
         self.fc1 = nn.Linear(64 *7 * 7, 128)
         self.fc2 = nn.Linear(128,10)
 
-        def forward(self, x):
-            """
-            Data flow over the network.
-            """
-            # Convolution -> ReLU -> Pooling
-            x = self.pool(F.relu(self.conv1(x)))
-            x = self.pool(F.relu(self.conv2(x)))
+    def forward(self, x):
+        """
+        Data flow over the network.
+        """
+        # Convolution -> ReLU -> Pooling
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
 
-            # Flatten tensors (batch_size, features)
-            x = x.view(x.size(0), -1)
+        # Flatten tensors (batch_size, features)
+        x = x.view(x.size(0), -1)
 
-            # Layers fully connected
-            x = F.relu(self.fc1(x))
-            x = self.fc2(x)
+        # Layers fully connected
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
 
-            return x
+        return x
