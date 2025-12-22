@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -8,7 +9,7 @@ class CNNModel(nn.Module):
     (1x28x28)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         # Convolutional layers
@@ -23,7 +24,7 @@ class CNNModel(nn.Module):
         self.fc1 = nn.Linear(64 *7 * 7, 128)
         self.fc2 = nn.Linear(128,10)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Data flow over the network.
         """
@@ -32,7 +33,7 @@ class CNNModel(nn.Module):
         x = self.pool(F.relu(self.conv2(x)))
 
         # Flatten tensors (batch_size, features)
-        x = x.view(x.size(0), -1)
+        torch.flatten(x, start_dim=1)
 
         # Layers fully connected
         x = F.relu(self.fc1(x))
