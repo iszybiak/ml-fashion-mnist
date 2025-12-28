@@ -17,6 +17,7 @@ def get_dataloaders(batch_size: int = 64) -> Tuple[DataLoader, DataLoader, DataL
         # Transformations for the training set (with augmentation)
         train_transform = transforms.Compose([
             transforms.RandomHorizontalFlip(),
+            # transforms.RandomRotation(10),
             transforms.ToTensor(),
             transforms.Normalize(NORMALIZE_MEAN, NORMALIZE_STD)
         ])

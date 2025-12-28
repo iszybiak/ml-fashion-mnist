@@ -138,8 +138,9 @@ def train_model() -> None:
         criterion = torch.nn.CrossEntropyLoss()
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-        epochs = 10
+        epochs = 15
         best_val_acc = 0.0
+        patience = 3
 
         history = {
             "train_loss": [],
@@ -170,8 +171,15 @@ def train_model() -> None:
 
             if val_acc > best_val_acc:
                 best_val_acc = val_acc
+                counter = 0
                 torch.save(model.state_dict(),
                            f'./model/best_model.pth')
+            else:
+                counter += 1
+
+            if counter >= patience:
+                print(f"Early stopping at epoch {epoch + 1}")
+                break
 
         plot_learning_curves(history)
         print("Training Finished")
