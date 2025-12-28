@@ -33,7 +33,7 @@ class CNNModel(nn.Module):
         x = self.pool(F.relu(self.conv2(x)))
 
         # Flatten tensors (batch_size, features)
-        torch.flatten(x, start_dim=1)
+        x = x.view(x.size(0), -1)
 
         # Layers fully connected
         x = F.relu(self.fc1(x))

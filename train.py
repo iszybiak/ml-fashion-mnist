@@ -6,6 +6,7 @@ import torch
 from torch import nn
 from torch.optim import Optimizer
 from torch.utils.data import DataLoader
+import matplotlib.pyplot as plt
 
 from data.dataset import get_dataloaders
 from model.cnn import CNNModel
@@ -95,9 +96,37 @@ def eval_epoch(model: nn.Module,
 
     return running_loss / total , correct / total
 
+
+def plot_learning_curves(history):
+    epochs = range(1, len(history["train_loss"]) + 1)
+
+    plt.figure(figsize=(12, 5))
+
+    #Loss
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, history["train_loss"], label="Train Loss")
+    plt.plot(epochs, history["val_loss"], label="Valid Loss")
+    plt.xlabel("Epochs")
+    plt.ylabel("Loss")
+    plt.title("Training and Validation Loss")
+    plt.legend()
+
+    #Accuracy
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, history["train_accuracy"], label="Train Accuracy")
+    plt.plot(epochs, history["val_accuracy"], label="Valid Accuracy")
+    plt.xlabel("Epochs")
+    plt.ylabel("Accuracy")
+    plt.title("Training and Validation Accuracy")
+    plt.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+
 def train_model() -> None:
     """
-    Main training loop.
+    Main training loop and progress visualization.
     """
     try:
         set_seed()
@@ -112,12 +141,26 @@ def train_model() -> None:
         epochs = 10
         best_val_acc = 0.0
 
+        history = {
+            "train_loss": [],
+            "val_loss": [],
+            "train_accuracy": [],
+            "val_accuracy": []
+        }
+
+
         for epoch in range(epochs):
             train_loss, train_acc = train_epoch(
                 model, device, criterion, train_loader, optimizer)
 
             val_loss, val_acc = eval_epoch(
                 model, device, criterion, val_loader)
+
+            history["train_loss"].append(train_loss)
+            history["val_loss"].append(val_loss)
+            history["train_accuracy"].append(train_acc)
+            history["val_accuracy"].append(val_acc)
+
 
             print(
                 f"Epoch [{epoch + 1}/{epochs}]\t"
@@ -130,6 +173,7 @@ def train_model() -> None:
                 torch.save(model.state_dict(),
                            f'./model/best_model.pth')
 
+        plot_learning_curves(history)
         print("Training Finished")
 
     except Exception as e:
