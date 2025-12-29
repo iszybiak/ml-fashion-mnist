@@ -14,7 +14,7 @@ Pipeline został zaprojektowany z myślą o **uruchamianiu wyłącznie na CPU**,
 ---
 
 ## Struktura projektu
-
+```
 project/
 ├── data/
 │   └── dataset.py        # Przygotowanie datasetów i DataLoaderów
@@ -25,6 +25,7 @@ project/
 ├── main.py               # Uruchomienie pełnego pipeline’u
 ├── requirements.txt      # Lista zależności
 └── README.md
+```
 
 Po uruchomieniu pipeline’u dane i model będą przechowywane lokalnie w folderach data/ i model/.
 
