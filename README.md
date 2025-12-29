@@ -47,7 +47,7 @@ Po uruchomieniu pipeline’u dane i model będą przechowywane lokalnie w folder
 - Python 3.9–3.11  
 - PyTorch 2.x  
 - torchvision  
-- numpy ≥ 1.21  
+- numpy < 2 
 - scikit-learn  
 - matplotlib
 
@@ -59,35 +59,18 @@ Opcja 1: klonowanie repozytorium
 ```
 git clone https://github.com/iszybiak/ml-fashion-mnist.git
 cd ml-fashion-mnist
-python -m venv venv
 ```
 Opcja 2: pobranie archiwum
 Pobierz projekt jako archiwum ZIP z GitHuba, rozpakuj go i przejdź do katalogu projektu:
 ```
 cd ml-fashion-mnist
-python -m venv venv
 ```
 
-### Aktywacja środowiska 
+### Uruchomienie projektu
 Windows
 ```
-venv\Scripts\activate
+run.bat
 ```
-
-Linux / macOS
-```
-source venv/bin/activate
-```
-### Instalacja zależności
-```
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-### Uruchomienie 
-```
-python main.py
-```
---- 
 
 ## Przygotowanie danych
 Zbiór Fashion-MNIST jest pobierany automatycznie przy pierwszym uruchomieniu.
