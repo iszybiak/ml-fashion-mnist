@@ -83,6 +83,7 @@ Obraz wejściowy jest automatycznie konwertowany do skali szarości, przeskalowa
 
 Model został wytrenowany na zbiorze Fashion-MNIST, dlatego poprawne wyniki są oczekiwane głównie dla obrazów o podobnym charakterze (proste, jednokolorowe ikony ubrań na jasnym tle). 
 Dla realistycznych zdjęć wyniki mogą być niepoprawne ze względu na różnicę w dystrybucji danych.
+Podczas tworzenia skryptu `predict.py` wykorzystano GitHub Copilot jako wsparcie programistyczne.
 
 
 ## Przygotowanie danych
