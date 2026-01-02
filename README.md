@@ -23,6 +23,8 @@ project/
 ├── train.py              # Logika treningu i walidacji
 ├── evaluate.py           # Ewaluacja i wizualizacja wyników
 ├── main.py               # Uruchomienie pełnego pipeline’u
+├── predict.py            # Klasyfikacja wprowadzonego obrazu
+├── run.bat               # Plik do uruchomienia treningu i ewaluacji
 ├── requirements.txt      # Lista zależności
 └── README.md
 ```
@@ -71,6 +73,17 @@ Windows
 ```
 run.bat
 ```
+
+### Uruchomienie klasyfikacji obrazu (predict.py)
+```
+python predict.py "1.png"
+```
+Skrypt `predict.py` umożliwia wykonanie predykcji dla pojedynczego obrazu przy użyciu wytrenowanego modelu CNN.  
+Obraz wejściowy jest automatycznie konwertowany do skali szarości, przeskalowany do rozmiaru 28×28 oraz znormalizowany w taki sam sposób jak dane treningowe (Fashion-MNIST).
+
+Model został wytrenowany na zbiorze Fashion-MNIST, dlatego poprawne wyniki są oczekiwane głównie dla obrazów o podobnym charakterze (proste, jednokolorowe ikony ubrań na jasnym tle). 
+Dla realistycznych zdjęć wyniki mogą być niepoprawne ze względu na różnicę w dystrybucji danych.
+
 
 ## Przygotowanie danych
 Zbiór Fashion-MNIST jest pobierany automatycznie przy pierwszym uruchomieniu.
