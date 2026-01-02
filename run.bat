@@ -6,8 +6,7 @@ call venv\Scripts\activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-python train.py
-python evaluate.py
+python main.py
 
 deactivate
 pause
